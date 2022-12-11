@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 2
+names: ['ksf-casing', 'pfm-1']
+
+roboflow:
+  workspace: project
+  project: aai521-final-project
+  version: 4
+  license: MIT
+  url: https://universe.roboflow.com/project/aai521-final-project/dataset/4
