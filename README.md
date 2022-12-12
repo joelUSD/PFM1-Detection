@@ -32,7 +32,7 @@ This will allow you to run the same tests that we ran with the same pretrained w
 
 ../yolov5/visDroneLarge.pt
 
-Methodology:
+## Methodology
 
 Train:
 To replicate the results of the model evaluation that we conducted, the following lines can be run to train the model on the Binghamton dataset with the small and large models and different pretrained weights. The pretrained weights were produced by training the YOLOv5 model on the visDrone2019 dataset for 200 epochs using this code:
@@ -50,15 +50,19 @@ https://drive.google.com/drive/folders/1OibZxxgTHdULaaRAtvp0CKrTmqjwO7s8?usp=sha
 The following are the training runs that were compared in our accompanying write up:
 
 Yolov5s default weights - pretrained on COCO:
+
 `train.py --img 640 --batch 4 --epochs 150 --data Binghamton.yaml --weights yolov5s.pt --name COCOSmall`
 
 Yolov5L default weights - pretrained on COCO:
+
 `python train.py --img 640 --batch 4 --epochs 150 --data Binghamton.yaml --weights yolov5l.pt --name COCOLarge`
 
 Yolov5s fine-tuned on visDrone2019:
+
 `python train.py --img 640 --batch 4 --epochs 150 --data Binghamton.yaml --weights yolov5s.pt --name COCOSmall`
 
 Yolov5L fine-tuned on visDrone2019:
+
 `python train.py --img 640 --batch 4 --epochs 150 --data Binghamton.yaml --weights runs/train/PTvisDroneLarge/weights/best.pt --name visDroneLarge`
 
 ## Detection
