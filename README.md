@@ -32,7 +32,7 @@ https://drive.google.com/drive/folders/1OibZxxgTHdULaaRAtvp0CKrTmqjwO7s8?usp=sha
 
 This will allow you to run the same tests that we ran with the same pretrained weights. 
 
-../yolov5/visDroneLarge.pt
+`../yolov5/visDroneLarge.pt`
 
 # Methodology
 
@@ -81,7 +81,7 @@ https://www.de-mine.com/datasets
 de Smet, Timothy; Nikulin, Alex; and Baur, Jasper, "Scatterable Landmine Detection Project Dataset 1-8" (2020). Geological Sciences and Environmental Studies Faculty Scholarship. 5.
 https://orb.binghamton.edu/geology_fac/5
 
-## yolov5
+## YOLOv5
 
 https://github.com/ultralytics/yolov5
 
