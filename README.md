@@ -13,16 +13,18 @@ The jupyter notebook included in this repository demonstrates the code that we r
 In your chosen environment, run the following command line code:  
 
 ```
-pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117 # install PyTorch
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117 # install PyTorch with CUDA support
 git clone https://github.com/ultralytics/yolov5 # clone YOLOv5
 pip install -qr yolov5/requirements.txt  # install requirements for yolov5
 ```
 
 After installing the requirements in the requirements.txt file, you will need to add the Binghamton data set to the yolov5 file structure. This is done by adding the train, test, valid folders and the binghamton.yaml file to the top level of the yolov5 folder. After addition, the file path for all four items should look like this:
+```
 ../yolov5/train
 ../yolov5/test
 ../yolov5/valid
 ../yolov5/binghamton.yaml
+```
 
 Add the files with extension “.pt” from this google drive link:
 
@@ -32,9 +34,9 @@ This will allow you to run the same tests that we ran with the same pretrained w
 
 ../yolov5/visDroneLarge.pt
 
-## Methodology
+# Methodology
 
-Train:
+## Training
 To replicate the results of the model evaluation that we conducted, the following lines can be run to train the model on the Binghamton dataset with the small and large models and different pretrained weights. The pretrained weights were produced by training the YOLOv5 model on the visDrone2019 dataset for 200 epochs using this code:
 
 ```
@@ -42,7 +44,7 @@ python train.py --img 640 --batch -1 --epochs 200 --data VisDrone.yaml --weights
 python train.py --img 640 --batch -1 --epochs 200 --data VisDrone.yaml --weights yolov5l.pt --name PTvisDroneLarge
 ```
 
-The pretrained weights are contained in the ‘.pt’ files that can be downloaded from the following google drive:
+The pretrained weights are contained in the ‘.pt’ files that can be downloaded from the following google drive (these files are too large for GitHub):
 
 https://drive.google.com/drive/folders/1OibZxxgTHdULaaRAtvp0CKrTmqjwO7s8?usp=sharing
 
@@ -51,7 +53,7 @@ The following are the training runs that were compared in our accompanying write
 
 Yolov5s default weights - pretrained on COCO:
 
-`train.py --img 640 --batch 4 --epochs 150 --data Binghamton.yaml --weights yolov5s.pt --name COCOSmall`
+`python train.py --img 640 --batch 4 --epochs 150 --data Binghamton.yaml --weights yolov5s.pt --name COCOSmall`
 
 Yolov5L default weights - pretrained on COCO:
 
@@ -59,7 +61,7 @@ Yolov5L default weights - pretrained on COCO:
 
 Yolov5s fine-tuned on visDrone2019:
 
-`python train.py --img 640 --batch 4 --epochs 150 --data Binghamton.yaml --weights yolov5s.pt --name COCOSmall`
+`python train.py --img 640 --batch 4 --epochs 150 --data Binghamton.yaml --weights runs/train/PTvisDroneSmall/weights/best.pt --name visDroneSmall`
 
 Yolov5L fine-tuned on visDrone2019:
 
@@ -69,17 +71,17 @@ Yolov5L fine-tuned on visDrone2019:
 
 The environment is now set up to replicate the testing that we accomplished with yolov5 and use the model for landmine detection in images. To preprocess new orthomosaics, go to www.roboflow.com and split the ortho into photos that are roughly 700 x 700 pixels. These files are then stored in a source folder in the top level of the yolov5 folder and referenced as follows when run in command line:
 
-`python detect.py –source ‘../source’ –weights best.pt –conf 0.6 –iou 0.45 –augment –project ‘test’ –name ‘detection_test’ `
+`python detect.py --img 640 --source data/test/images --weights runs/train/COCOSmall/weights/best.pt --name COCOSmall`
 
-Citation and Affiliated Links:
+# Citation and Affiliated Links
 
-Demining Research Group:
+## Demining Research Group
 https://www.de-mine.com/datasets
 
 de Smet, Timothy; Nikulin, Alex; and Baur, Jasper, "Scatterable Landmine Detection Project Dataset 1-8" (2020). Geological Sciences and Environmental Studies Faculty Scholarship. 5.
 https://orb.binghamton.edu/geology_fac/5
 
-yolov5:
+## yolov5
 
 https://github.com/ultralytics/yolov5
 
@@ -94,7 +96,7 @@ doi = {10.5281/zenodo.4154370},
 url = {https://doi.org/10.5281/zenodo.4154370}
 }
 
-visDrone:
+## visDrone
 
 https://github.com/VisDrone/VisDrone-Dataset	
 
@@ -108,7 +110,6 @@ number={},
 pages={1-1},
 doi={10.1109/TPAMI.2021.3119563}}
 
-
-License: 
+## License
 
 This project is released under the Apache 2.0 license.
